@@ -22,8 +22,8 @@ jobs:
       - name: 'AutoClick'
         run: bash ./main.sh
       - name: 'Send mail'
-          uses: dawidd6/action-send-mail@master
-          with:
+        uses: dawidd6/action-send-mail@master
+        with:
             server_address: smtp.163.com
             server_port: 465
             username: ${{ secrets.MAIL_USERNAME }}
