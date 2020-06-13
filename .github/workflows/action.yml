@@ -28,7 +28,7 @@ jobs:
             server_port: 465
             username: ${{ secrets.MAIL_USERNAME }}
             password: ${{ secrets.MAIL_PASSWORD }}
-            subject: Shanghai Weather Report (${{env.REPORT_DATE}})
+            subject: 华工签到系统
             body: file://email.txt
             to: 2679225466@qq.com
             from: GitHub Actions
