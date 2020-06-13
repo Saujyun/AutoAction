@@ -1,4 +1,4 @@
-name: 'GitHub Actions Weather Bot'
+name: 'GitHub Actions SCUT_SIGN_IN'
 
 on:
   watch:
