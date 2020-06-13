@@ -21,15 +21,4 @@ jobs:
         run: pip install -r ./requirements.txt
       - name: 'AutoClick'
         run: bash ./main.sh
-      - name: 'Send mail'
-        uses: dawidd6/action-send-mail@master
-        with:
-            server_address: smtp.163.com
-            server_port: 465
-            username: ${{ secrets.MAIL_USERNAME }}
-            password: ${{ secrets.MAIL_PASSWORD }}
-            subject: 华工签到系统
-            body: file://email.txt
-            to: 2679225466@qq.com
-            from: GitHub Actions
-            content_type: text/html
+      
