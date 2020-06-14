@@ -4,7 +4,7 @@ import time
 from selenium import webdriver
 
 # 模拟浏览器打开网站
-browser = webdriver.Firefox()
+browser = webdriver.Chrome("/usr/local/bin/chromedriver")
 # browser.get('http://IamOK.scut.edu.cn')
 browser.get('https://sso.scut.edu.cn/cas/login?service=https%3A%2F%2Fiamok.scut.edu.cn%2Fcas%2Flogin')
 # 将窗口最大化
