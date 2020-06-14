@@ -14,22 +14,22 @@ jobs:
         - name: 'Checkout codes'
           uses: actions/checkout@v1
         - name: 'Set up Python'
-            uses: actions/setup-python@v1
-            with:
-              python-version: 3.7
+          uses: actions/setup-python@v1
+          with:
+            python-version: 3.7
         - name: 'Install requirements'
           run: pip install -r ./requirements.txt
         - name: 'AutoClick'
           run: bash ./main.sh
         - name: 'Send mail'
-            uses: dawidd6/action-send-mail@master
-            with:
-              server_address: smtp.163.com
-              server_port: 465
-              username: ${{ secrets.MAIL_USERNAME }}
-              password: ${{ secrets.MAIL_PASSWORD }}
-              subject: 华工疫情健康申报系统操作结果 (${{env.REPORT_DATE}})
-              body: file://email.txt
-              to: 2679225466@qq.com
-              from: GitHub Actions
-              content_type: text/html
+          uses: dawidd6/action-send-mail@master
+          with:
+            server_address: smtp.163.com
+            server_port: 465
+            username: ${{ secrets.MAIL_USERNAME }}
+            password: ${{ secrets.MAIL_PASSWORD }}
+            subject: 华工疫情健康申报系统操作结果 (${{env.REPORT_DATE}})
+            body: file://email.txt
+            to: 2679225466@qq.com
+            from: GitHub Actions
+            content_type: text/html
