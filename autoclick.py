@@ -29,15 +29,14 @@ def scut():
     browser.find_element_by_xpath("//*[@id='index_login_btn']").click()
     time.sleep(5)
     try:
-        if(is_element_exist("#app > div > div > div:nth-child(2) > div.reportPeaceDiv > div:nth-child(1) > span")):
-            succeed = True
-        else:
+    #     if(is_element_exist("#app > div > div > div:nth-child(2) > div.reportPeaceDiv > div:nth-child(1) > span") and ):
+    #         succeed = True
+    #     else:
             # browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
-            js = 'document.getElementsByClassName("btn").click();'
-            browser.execute_script(js)
-            print("华工申报成功")
-            time.sleep(2)
-            succeed = True
+        js = 'document.getElementsByClassName("btn").click();'
+        browser.execute_script(js)
+        print("华工申报成功")
+        succeed = True
         time.sleep(3)
         saveFile("华工健康申报签到成功！")
     except e:
