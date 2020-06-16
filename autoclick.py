@@ -32,10 +32,13 @@ def scut():
         if(is_element_exist("#app > div > div > div:nth-child(2) > div.reportPeaceDiv > div:nth-child(1) > span")):
             succeed = True
         else:
-            browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
+            # browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
+            js = 'document.getElementsByClassName("breadcrumb-item active")[0].click();'
+            browser.execute_script(js)
             print("华工申报成功")
             time.sleep(2)
             succeed = True
+        time.sleep(3)
         saveFile("华工健康申报签到成功！")
     except e:
         saveFile(str(e))
@@ -77,9 +80,12 @@ def situyun():
             succeed = True
             saveFile("明日再来!")
         else:
-            browser.find_element_by_xpath("//*[@id='checkin-div']/a").click()
+            # browser.find_element_by_xpath("//*[@id='checkin-div']/a").send_keys(Keys.ENTER)
+            js = 'document.getElementsByClassName("btn").click();'
+            browser.execute_script(js)
             succeed = True
             print("司徒云打卡成功")
+        time.sleep(3)
         saveFile("司徒云签到成功！")
     except e:
         saveFile(str(e))
