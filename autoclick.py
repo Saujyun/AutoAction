@@ -33,19 +33,13 @@ def scut():
             succeed = True
         else:
             browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
+            print("华工申报成功")
             time.sleep(2)
             succeed = True
         saveFile("华工健康申报签到成功！")
     except e:
         saveFile(str(e))
-    # try:
-    #     if ("今天已经填报过了哦" in browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/div[1]/span").text):
-    #         succeed = True
-    # except:
-    #     browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
-    #     time.sleep(2)
-    #     succeed = True
-    # print("已经签到")
+
 
 def is_element_exist(css):
     s = browser.find_elements_by_css_selector(css_selector=css)
@@ -53,6 +47,7 @@ def is_element_exist(css):
         print("元素未找到:%s"%css)
         return False
     elif len(s) == 1:
+        print("元素找到:%s"%css)
         return True
     else:
         print("找到%s个元素：%s"%(len(s),css))
@@ -82,12 +77,12 @@ def situyun():
             succeed = True
             saveFile("明日再来!")
         else:
-            browser.find_element_by_xpath("//*[@id='checkin-div']").click()
+            browser.find_element_by_xpath("//*[@id='checkin-div']/a").click()
             succeed = True
+            print("司徒云打卡成功")
         saveFile("司徒云签到成功！")
     except e:
         saveFile(str(e))
-
 if __name__ == '__main__':
     scut()
     situyun()
