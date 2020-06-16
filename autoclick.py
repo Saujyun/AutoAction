@@ -32,9 +32,9 @@ def scut():
     #     if(is_element_exist("#app > div > div > div:nth-child(2) > div.reportPeaceDiv > div:nth-child(1) > span") and ):
     #         succeed = True
     #     else:
-            # browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
-        js = 'document.getElementsByClassName("btn").click();'
-        browser.execute_script(js)
+        browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
+        # js = 'document.getElementsByClassName("btn").click();'
+        # browser.execute_script(js)
         print("华工申报成功")
         succeed = True
         time.sleep(3)
