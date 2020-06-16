@@ -33,7 +33,7 @@ def scut():
             succeed = True
         else:
             # browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
-            js = 'document.getElementsByClassName("breadcrumb-item active")[0].click();'
+            js = 'document.getElementsByClassName("btn").click();'
             browser.execute_script(js)
             print("华工申报成功")
             time.sleep(2)
@@ -81,7 +81,7 @@ def situyun():
             saveFile("明日再来!")
         else:
             # browser.find_element_by_xpath("//*[@id='checkin-div']/a").send_keys(Keys.ENTER)
-            js = 'document.getElementsByClassName("btn").click();'
+            js = 'document.getElementById("checkin-div").children[0].click();'
             browser.execute_script(js)
             succeed = True
             print("司徒云打卡成功")
