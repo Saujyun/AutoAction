@@ -1,3 +1,27 @@
-Invalid login: 535 Error: authentication failed
+1.Invalid login: 535 Error: authentication failed
+授权码出错
+2.Mail command failed: 550 Invalid User
+邮箱地址填成了邮箱用户名
 
-Mail command failed: 550 Invalid User
+3.Traceback (most recent call last):
+  File "autoclick.py", line 7, in <module>
+    browser = webdriver.Firefox()
+  File "/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/selenium/webdriver/firefox/webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/selenium/webdriver/remote/webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "/opt/hostedtoolcache/Python/3.7.7/x64/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: invalid argument: can't kill an exited process
+
+##[error]Process completed with exit code 1.
+
+没配置geckodriver，而且没有把路径放到path
+
+4.python代码使用os.environ['SCUT_USER']之前需要在yml文件配置
+env:
+   SCUT_USER: ${{ secrets.SCUT_USER }}

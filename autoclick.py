@@ -2,42 +2,94 @@
 import os
 import time
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
 
 # 模拟浏览器打开网站
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
-browser = webdriver.Chrome('/usr/bin/chromedriver',chrome_options=chrome_options)
-
-# browser.get('http://IamOK.scut.edu.cn')
-browser.get('https://sso.scut.edu.cn/cas/login?service=https%3A%2F%2Fiamok.scut.edu.cn%2Fcas%2Flogin')
-# 将窗口最大化
-browser.maximize_window()
-
-# 格式是PEP8自动转的
-# 这里是找到输入框,发送要输入的用户名和密码,模拟登陆
-browser.find_element_by_xpath(
-    "//*[@id='un']").send_keys(os.environ['SCUT_USER'])
-browser.find_element_by_xpath(
-    "//*[@id='pd']").send_keys(os.environ['SCUT_PASSWORD'])
-# 在输入用户名和密码之后,点击登陆按钮
-browser.find_element_by_xpath("//*[@id='index_login_btn']").click()
-time.sleep(5)
+browser = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options)
+#window电脑本地
+# browser = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver")
+succeed = False
 
 
-if("今天已经填报过了哦" in browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/div[1]/span").text ):
-    # 点击签到,实现功能
-    browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
-    time.sleep(2)
-    print("已经签到")
-# 这个print其实没事什么用,如果真的要测试脚本是否运行成功，可以用try来抛出异常
-print("签到成功")
+def scut():
+    browser.get('https://sso.scut.edu.cn/cas/login?service=https%3A%2F%2Fiamok.scut.edu.cn%2Fcas%2Flogin')
+    # 将窗口最大化
+    browser.maximize_window()
+    # 格式是PEP8自动转的
+    # 这里是找到输入框,发送要输入的用户名和密码,模拟登陆
+    browser.find_element_by_xpath(
+        "//*[@id='un']").send_keys(os.environ['SCUT_USER'])
+    browser.find_element_by_xpath(
+        "//*[@id='pd']").send_keys(os.environ['SCUT_PASSWORD'])
+    # 在输入用户名和密码之后,点击登陆按钮
+    browser.find_element_by_xpath("//*[@id='index_login_btn']").click()
+    time.sleep(5)
+    try:
+        if(is_element_exist("#app > div > div > div:nth-child(2) > div.reportPeaceDiv > div:nth-child(1) > span")):
+            succeed = True
+        else:
+            browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
+            time.sleep(2)
+            succeed = True
+        saveFile("华工健康申报签到成功！")
+    except e:
+        saveFile(str(e))
+    # try:
+    #     if ("今天已经填报过了哦" in browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/div[1]/span").text):
+    #         succeed = True
+    # except:
+    #     browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
+    #     time.sleep(2)
+    #     succeed = True
+    # print("已经签到")
 
-# 保存email内容
-with open("email.txt", 'w',encoding="utf-8") as email:
-    email.writelines("签到成功!")
+def is_element_exist(css):
+    s = browser.find_elements_by_css_selector(css_selector=css)
+    if len(s) == 0:
+        print("元素未找到:%s"%css)
+        return False
+    elif len(s) == 1:
+        return True
+    else:
+        print("找到%s个元素：%s"%(len(s),css))
+        return False
 
-# 脚本运行成功,退出浏览器
-browser.quit()
+def saveFile(message):
+    # 保存email内容
+    with open("email.txt", 'a+', encoding="utf-8") as email:
+        email.write(message+'\n')
+
+
+def situyun():
+    browser.get('http://situcloud.xyz/auth/login')
+    # 将窗口最大化
+    browser.maximize_window()
+    # 格式是PEP8自动转的
+    # 这里是找到输入框,发送要输入的用户名和密码,模拟登陆
+    browser.find_element_by_xpath(
+        "//*[@id='email']").send_keys(os.environ['SITUYUN_USER'])
+    browser.find_element_by_xpath(
+        "//*[@id='password']").send_keys(os.environ['SITUYUN_PASSWORD'])
+    # 在输入用户名和密码之后,点击登陆按钮
+    browser.find_element_by_xpath("//*[@id='app']/section/div/div/div/div[2]/form/div/div[5]/button").click()
+    time.sleep(5)
+    try:
+        if("明日再来" in browser.find_element_by_xpath("//*[@id='checkin-div']").text):
+            succeed = True
+            saveFile("明日再来!")
+        else:
+            browser.find_element_by_xpath("//*[@id='checkin-div']").click()
+            succeed = True
+        saveFile("司徒云签到成功！")
+    except e:
+        saveFile(str(e))
+
+if __name__ == '__main__':
+    scut()
+    situyun()
+    # 脚本运行成功,退出浏览器
+    browser.quit()
