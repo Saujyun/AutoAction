@@ -33,6 +33,9 @@ jobs:
               && sudo chmod +x /usr/local/bin/chromedriver \
               && chromedriver --version
         - name: 'AutoClick'
+          env:
+            SCUT_USER: ${{ secrets.SCUT_USER }}
+            SCUT_PASSWORD: ${{ secrets.SCUT_PASSWORD }}
           run: python autoclick.py
         - name: Test with pytest
           run: |
