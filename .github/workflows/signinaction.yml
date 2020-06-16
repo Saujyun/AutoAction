@@ -37,18 +37,6 @@ jobs:
             SCUT_USER: ${{ secrets.SCUT_USER }}
             SCUT_PASSWORD: ${{ secrets.SCUT_PASSWORD }}
           run: python autoclick.py
-        - name: Test with pytest
-          run: |
-            pip install pytest
-            pip install pytest-cov
-            pytest autoclick.py --doctest-modules --junitxml=test-results.xml --cov=com --cov-report=xml --cov-report=html
-        - name: Upload pytest test results
-          uses: actions/upload-artifact@v1
-          with:
-            name: pytest-results-3.7
-            path: test-results-3.7.xml
-          # Use always() to always run this step to publish test results when there are test failures
-          if: ${{ always() }}
         - name: 'Send mail'
           uses: dawidd6/action-send-mail@master
           with:
