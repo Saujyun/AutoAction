@@ -27,21 +27,23 @@ def scut():
         "//*[@id='pd']").send_keys(os.environ['SCUT_PASSWORD'])
     # 在输入用户名和密码之后,点击登陆按钮
     browser.find_element_by_xpath("//*[@id='index_login_btn']").click()
-    time.sleep(5)
+    time.sleep(10)
     try:
     #     if(is_element_exist("#app > div > div > div:nth-child(2) > div.reportPeaceDiv > div:nth-child(1) > span") and ):
     #         succeed = True
     #     else:
         browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
-        # js = 'document.getElementsByClassName("btn").click();'
-        # browser.execute_script(js)
         print("华工申报成功")
         succeed = True
         time.sleep(3)
         saveFile("华工健康申报签到成功！")
-    except e:
+    except NoSuchElementException as e:
+        print ("NoSuchElementException!")
+        # js = 'document.getElementById("btn").click();'
+        # browser.execute_script(js)
         saveFile(str(e))
-
+    finally:
+        saveFile("华工签到代码存在异常")
 
 def is_element_exist(css):
     s = browser.find_elements_by_css_selector(css_selector=css)
@@ -73,7 +75,7 @@ def situyun():
         "//*[@id='password']").send_keys(os.environ['SITUYUN_PASSWORD'])
     # 在输入用户名和密码之后,点击登陆按钮
     browser.find_element_by_xpath("//*[@id='app']/section/div/div/div/div[2]/form/div/div[5]/button").click()
-    time.sleep(5)
+    time.sleep(10)
     try:
         if("明日再来" in browser.find_element_by_xpath("//*[@id='checkin-div']").text):
             succeed = True
@@ -86,8 +88,11 @@ def situyun():
             print("司徒云打卡成功")
         time.sleep(3)
         saveFile("司徒云签到成功！")
-    except e:
+    except NoSuchElementException as e:
+        print ("NoSuchElementException!")
         saveFile(str(e))
+    finally:
+        saveFile("司徒云签到代码存在异常")
 if __name__ == '__main__':
     scut()
     situyun()
