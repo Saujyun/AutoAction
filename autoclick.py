@@ -1,5 +1,5 @@
-# 方便延时加载
 import os
+# 方便延时加载
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -12,7 +12,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 browser = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_options)
 #window电脑本地
 # browser = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver")
-succeed = False
+
 
 
 def scut():
@@ -29,21 +29,16 @@ def scut():
     browser.find_element_by_xpath("//*[@id='index_login_btn']").click()
     time.sleep(10)
     try:
-    #     if(is_element_exist("#app > div > div > div:nth-child(2) > div.reportPeaceDiv > div:nth-child(1) > span") and ):
-    #         succeed = True
-    #     else:
         browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
         print("华工申报成功")
-        succeed = True
         time.sleep(3)
         saveFile("华工健康申报签到成功！")
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         # js = 'document.getElementById("btn").click();'
         # browser.execute_script(js)
-        saveFile(str(e))
-    finally:
-        saveFile("华工签到代码存在异常")
+        saveFile("华工签到代码存在异常"+str(e))
+
 
 def is_element_exist(css):
     s = browser.find_elements_by_css_selector(css_selector=css)
@@ -78,21 +73,18 @@ def situyun():
     time.sleep(10)
     try:
         if("明日再来" in browser.find_element_by_xpath("//*[@id='checkin-div']").text):
-            succeed = True
             saveFile("明日再来!")
         else:
             # browser.find_element_by_xpath("//*[@id='checkin-div']/a").send_keys(Keys.ENTER)
             js = 'document.getElementById("checkin-div").children[0].click();'
             browser.execute_script(js)
-            succeed = True
             print("司徒云打卡成功")
         time.sleep(3)
         saveFile("司徒云签到成功！")
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
-        saveFile(str(e))
-    finally:
-        saveFile("司徒云签到代码存在异常")
+        saveFile("司徒云签到代码存在异常"+str(e))
+
 if __name__ == '__main__':
     scut()
     situyun()
