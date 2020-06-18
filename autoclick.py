@@ -40,18 +40,6 @@ def scut():
         saveFile("华工签到代码存在异常"+str(e))
 
 
-def is_element_exist(css):
-    s = browser.find_elements_by_css_selector(css_selector=css)
-    if len(s) == 0:
-        print("元素未找到:%s"%css)
-        return False
-    elif len(s) == 1:
-        print("元素找到:%s"%css)
-        return True
-    else:
-        print("找到%s个元素：%s"%(len(s),css))
-        return False
-
 def saveFile(message):
     # 保存email内容
     with open("email.txt", 'a+', encoding="utf-8") as email:
