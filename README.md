@@ -10,7 +10,7 @@
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618182701545.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618182802385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
-3.配置你的账号和密码。在工程的secrets里面放置你的账号和密码。同样的，如果你不需要发送邮件通知可以不添加邮件配置。（SCUT_PASSWORD和SCUT_USER两个变量名需要跟signinaction.yml代码里面的一致）
+ 3.配置你的账号和密码。在工程的secrets里面放置你的账号和密码。同样的，如果你不需要发送邮件通知可以不添加邮件配置。（SCUT_PASSWORD和SCUT_USER两个变量名需要跟signinaction.yml代码里面的一致）
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618173121361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
 
 4.点击打开autoclick.py文件，并删除或者注释掉下面红框代码。
@@ -38,9 +38,15 @@ on:
 9.运行情况
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061822350874.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
 10.若出现问题可以点击查看log信息![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618183751835.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618183704916.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
-11.运行结束后，会有邮件发送
+11.如果出现上图所示的selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: element is not attached to the page document错误：可以尝试将autoclick.py第30行里面的
+
+```
+ time.sleep(10)改为 time.sleep(30)延长等待时间 
+```
+
+12.运行结束后，会有邮件发送
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618223940995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
-12.之后要是不需要每天填报了，那进入setting-》action-》选择Disable Actions for this repository。该仓库的工作流将不再运行。
+13.之后要是不需要每天填报了，那进入setting-》action-》选择Disable Actions for this repository。该仓库的工作流将不再运行。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200619100121815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
 参考链接：[GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
 [GitHub Actions 教程：定时发送天气邮件](http://www.ruanyifeng.com/blog/2019/12/github_actions.html)
@@ -48,3 +54,4 @@ on:
 [手动触发 GitHub Actions 的几种方式](https://p3terx.com/archives/github-actions-manual-trigger.html)
 [GitHub Actions 中 python 脚本获取仓库 secrets](https://blog.csdn.net/sculpta/article/details/106474324)
 [Selenium2+python自动化46-js解决click失效问题](https://www.cnblogs.com/yoyoketang/p/6569226.html)
+[GitHub action fork之后无法触发action](https://github.community/t/forked-repo-doesnt-trigger-action/16259)
