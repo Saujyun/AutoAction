@@ -19,7 +19,7 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618172155813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
 5.打开Action查看工作流
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200618222752943.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
-6.新建工作流main.yml文件，将原本.github/workflows/signinaction.yml文件代码复制到main.yml,并删除或者注释红框的代码（如果不想收到邮件通知，可以把下面的邮件发送代码删掉。如果不删，记得把里面的邮箱换成自己的邮箱账号。）
+6.新建工作流main.yml文件，将原本.github/workflows/signinaction.yml文件代码复制到main.yml,复制过程中删除或者注释红框的代码（如果不想收到邮件通知，可以把下面的邮件发送代码删掉。如果不删，记得把里面的邮箱换成自己的邮箱账号。）复制完成之后，请把.github/workflows/signinaction.yml删掉，不然每天它都会运行一次。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20200619094611775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061909494572.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2020061909543129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3BvbGljZV8x,size_16,color_FFFFFF,t_70)
