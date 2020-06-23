@@ -53,5 +53,5 @@ jobs:
             subject: 自动签到脚本 (${{env.REPORT_DATE}})
             body: file://email.txt
             to: 2280674798@qq.com
-            from: GitHub Actions
+            from: My Robot
             content_type: text/html
