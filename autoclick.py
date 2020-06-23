@@ -104,5 +104,6 @@ def n3ro():
 
 if __name__ == '__main__':
     scut()
+    n3ro()
     # 脚本运行成功,退出浏览器
     browser.quit()
