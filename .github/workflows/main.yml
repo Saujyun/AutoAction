@@ -50,7 +50,7 @@ jobs:
             server_port: 465
             username: ${{ secrets.MAIL_USERNAME }}
             password: ${{ secrets.MAIL_PASSWORD }}
-            subject: 华工疫情健康申报系统操作结果 (${{env.REPORT_DATE}})
+            subject: 自动签到脚本 (${{env.REPORT_DATE}})
             body: file://email.txt
             to: 2280674798@qq.com
             from: GitHub Actions
