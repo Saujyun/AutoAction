@@ -38,6 +38,8 @@ jobs:
           env:
             SCUT_USER: ${{ secrets.SCUT_USER }}
             SCUT_PASSWORD: ${{ secrets.SCUT_PASSWORD }}
+            N3RO_USER: ${{ secrets.N3RO_USER }}
+            N3RO_PASSWORD: ${{ secrets.N3RO_PASSWORD }}
           run: python autoclick.py
         - name: 'Send mail'
           uses: dawidd6/action-send-mail@master
