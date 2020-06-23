@@ -29,14 +29,14 @@ def scut():
     time.sleep(10)
     try:
         browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
-        print("华工申报成功")
+        print("IamOK签到成功")
         time.sleep(3)
-        saveFile("华工健康申报签到成功！")
+        saveFile("IamOK签到成功！\n")
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         # js = 'document.getElementById("btn").click();'
         # browser.execute_script(js)
-        saveFile("华工签到代码存在异常"+str(e))
+        saveFile("IamOK签到代码存在异常"+str(e))
 
 
 def saveFile(message):
@@ -87,13 +87,13 @@ def n3ro():
     time.sleep(10)
     try:
         if("今日已签到" in browser.find_element_by_xpath("//*[@class='card-action']").text):
-            saveFile("n3ro今日已签到!")
+            saveFile("n3ro今日已签到!\n")
         else:  
             js = 'document.getElementById("checkin").click();'
             browser.execute_script(js)
-            print("n3ro打卡成功")
-        time.sleep(3)
-        saveFile("n3ro签到成功！")
+            print("n3ro签到成功")
+            saveFile("n3ro签到成功！\n")
+        time.sleep(3)  
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         saveFile("n3ro签到代码存在异常"+str(e)) 
@@ -117,9 +117,9 @@ def jikess():
         else:  
             js = 'document.getElementById("checkin").click();'
             browser.execute_script(js)
-            print("Jikess打卡成功")
-        time.sleep(3)
-        saveFile("Jikess签到成功！")
+            print("Jikess签到成功")
+            saveFile("Jikess签到成功！")
+        time.sleep(3)      
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         saveFile("Jikess签到代码存在异常"+str(e)) 
