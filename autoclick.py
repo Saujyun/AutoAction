@@ -13,7 +13,7 @@ browser = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_option
 #window电脑本地
 # browser = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver")
 
-
+# IamOK自动签到
 def scut():
     browser.get('https://sso.scut.edu.cn/cas/login?service=https%3A%2F%2Fiamok.scut.edu.cn%2Fcas%2Flogin')
     # 将窗口最大化
@@ -39,12 +39,8 @@ def scut():
         saveFile("IamOK签到代码存在异常"+str(e))
 
 
-def saveFile(message):
-    # 保存email内容
-    with open("email.txt", 'a+', encoding="utf-8") as email:
-        email.write(message+'\n')
 
-
+# 司徒云自动签到脚本
 def situyun():
     browser.get('http://situcloud.xyz/auth/login')
     # 将窗口最大化
@@ -71,7 +67,8 @@ def situyun():
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         saveFile("司徒云签到代码存在异常"+str(e))
-        
+
+# n3ro自动签到脚本        
 def n3ro():
     browser.get('https://n3ro.club/auth/login')
     # 将窗口最大化
@@ -87,7 +84,7 @@ def n3ro():
     time.sleep(10)
     try:
         if("今日已签到" in browser.find_element_by_xpath("//*[@class='card-action']").text):
-            saveFile("n3ro今日已签到!\n")
+            saveFile("n3ro今日已签到！\n")
         else:  
             js = 'document.getElementById("checkin").click();'
             browser.execute_script(js)
@@ -98,6 +95,7 @@ def n3ro():
         print ("NoSuchElementException!")
         saveFile("n3ro签到代码存在异常"+str(e)) 
 
+# Jikess自动签到脚本
 def jikess():
     browser.get('https://jikess.com/user/login.php')
     # 将窗口最大化
@@ -113,7 +111,7 @@ def jikess():
     time.sleep(10)
     try:
         if("不能签到" in browser.find_element_by_xpath("//*[@class='btn btn-success btn-flat disabled']").text):
-            saveFile("Jikess今日已签到!")
+            saveFile("Jikess今日已签到！\n")
         else:  
             js = 'document.getElementById("checkin").click();'
             browser.execute_script(js)
@@ -123,6 +121,12 @@ def jikess():
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         saveFile("Jikess签到代码存在异常"+str(e)) 
+
+# 写邮件
+def saveFile(message):
+    # 保存email内容
+    with open("email.txt", 'a+', encoding="utf-8") as email:
+        email.write(message+'\n')
         
 if __name__ == '__main__':
     scut()
