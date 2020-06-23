@@ -72,8 +72,38 @@ def situyun():
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         saveFile("司徒云签到代码存在异常"+str(e))
+        
+def n3ro():
+    browser.get('https://n3ro.club/auth/login')
+    # 将窗口最大化
+    browser.maximize_window()
+    # 格式是PEP8自动转的
+    # 这里是找到输入框,发送要输入的用户名和密码,模拟登陆
+    browser.find_element_by_xpath(
+        "//*[@id='email']").send_keys(os.environ['N3RO_USER'])
+    browser.find_element_by_xpath(
+        "//*[@id='passwd']").send_keys(os.environ['N3RO_PASSWORD'])
+    # 在输入用户名和密码之后,点击登陆按钮
+    browser.find_element_by_xpath("//*[@id='login']").click()
+    time.sleep(10)
+    try:
+        if("今日已签到" in browser.find_element_by_xpath("//*[@class='btn btn-brand disabled btn-flat']").text):
+            saveFile("n3ro今日已签到!")
+        else:  
+            js = 'document.getElementById("checkin").click();'
+            browser.execute_script(js)
+            print("n3ro打卡成功")
+        time.sleep(3)
+        saveFile("n3ro签到成功！")
+    except NoSuchElementException as e:
+        print ("NoSuchElementException!")
+        saveFile("n3ro签到代码存在异常"+str(e))        
+       
+        
+        
 
 if __name__ == '__main__':
     scut()
+    n3ro()
     # 脚本运行成功,退出浏览器
     browser.quit()
