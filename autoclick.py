@@ -13,7 +13,7 @@ browser = webdriver.Chrome('/usr/bin/chromedriver', chrome_options=chrome_option
 #window电脑本地
 # browser = webdriver.Chrome("C:\Program Files (x86)\Google\Chrome\Application\chromedriver")
 
-# 华工健康自动申报
+
 def scut():
     browser.get('https://sso.scut.edu.cn/cas/login?service=https%3A%2F%2Fiamok.scut.edu.cn%2Fcas%2Flogin')
     # 将窗口最大化
@@ -38,7 +38,13 @@ def scut():
         # browser.execute_script(js)
         saveFile("华工签到代码存在异常"+str(e))
 
-# 司徒云自动签到
+
+def saveFile(message):
+    # 保存email内容
+    with open("email.txt", 'a+', encoding="utf-8") as email:
+        email.write(message+'\n')
+
+
 def situyun():
     browser.get('http://situcloud.xyz/auth/login')
     # 将窗口最大化
@@ -65,8 +71,7 @@ def situyun():
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         saveFile("司徒云签到代码存在异常"+str(e))
-
-# n3ro自动签到        
+        
 def n3ro():
     browser.get('https://n3ro.club/auth/login')
     # 将窗口最大化
@@ -93,7 +98,6 @@ def n3ro():
         print ("NoSuchElementException!")
         saveFile("n3ro签到代码存在异常"+str(e)) 
 
-# Jikess自动签到
 def jikess():
     browser.get('https://jikess.com/user/login.php')
     # 将窗口最大化
@@ -119,13 +123,6 @@ def jikess():
     except NoSuchElementException as e:
         print ("NoSuchElementException!")
         saveFile("Jikess签到代码存在异常"+str(e)) 
-
-# 写邮件
-def saveFile(message):
-    # 保存email内容
-    with open("email.txt", 'a+', encoding="utf-8") as email:
-        email.write(message+'\n')
-
         
 if __name__ == '__main__':
     scut()
