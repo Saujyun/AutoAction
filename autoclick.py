@@ -87,7 +87,7 @@ def n3ro():
     browser.find_element_by_xpath("//*[@id='login']").click()
     time.sleep(10)
     try:
-        if("今日已签到" in browser.find_element_by_xpath("//*[@class='btn btn-brand disabled btn-flat']").text):
+        if("今日已签到" in browser.find_element_by_xpath("//*[@class='card-action']").text):
             saveFile("n3ro今日已签到!")
         else:  
             js = 'document.getElementById("checkin").click();'
