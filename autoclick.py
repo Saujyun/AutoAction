@@ -110,7 +110,8 @@ def jikess():
     browser.find_element_by_xpath("//*[@id='login']").click()
     time.sleep(10)
     try:
-        if("不能签到" in browser.find_element_by_xpath("//*[@class='btn btn-success btn-flat disabled']").text):
+        print(browser.find_element_by_xpath("//*[@class='box-body']").text)
+        if("不能签到" in browser.find_element_by_xpath("//*[@class='box-body']").text):
             saveFile("Jikess今日已签到！\n")
         else:  
             js = 'document.getElementById("checkin").click();'
