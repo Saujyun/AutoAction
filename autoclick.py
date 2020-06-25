@@ -110,8 +110,7 @@ def jikess():
     browser.find_element_by_xpath("//*[@id='login']").click()
     time.sleep(10)
     try:
-        print(type(browser.find_element_by_xpath("//*[@class='skin-blue']").text))
-        print(browser.find_element_by_xpath("//*[@class='skin-blue']").text)
+        
         if("不能签到" in browser.find_element_by_xpath("//*[@class='skin-blue']").text):
             saveFile("Jikess今日已签到！\n")
         else:  
