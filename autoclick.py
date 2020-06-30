@@ -27,7 +27,7 @@ def scut():
         "//*[@id='pd']").send_keys(os.environ['SCUT_PASSWORD'])
     # 在输入用户名和密码之后,点击登陆按钮
     browser.find_element_by_xpath("//*[@id='index_login_btn']").click()
-    time.sleep(10)
+    time.sleep(50)
     try:
         browser.find_element_by_xpath("//*[@id='app']/div/div/div[2]/div[3]/button").click()
         print("华工申报成功")
