@@ -123,6 +123,34 @@ def jikess():
         print ("NoSuchElementException!")
         saveFile("Jikess签到代码存在异常"+str(e)) 
 
+# Jikess自动签到脚本
+def jikess2():
+    browser.get('https://jikess.com/user/login.php')
+    # 将窗口最大化
+    browser.maximize_window()
+    # 格式是PEP8自动转的
+    # 这里是找到输入框,发送要输入的用户名和密码,模拟登陆
+    browser.find_element_by_xpath(
+        "//*[@id='email']").send_keys(os.environ['JIKESS_USER2'])
+    browser.find_element_by_xpath(
+        "//*[@id='passwd']").send_keys(os.environ['JIKESS_PASSWORD2'])
+    # 在输入用户名和密码之后,点击登陆按钮
+    browser.find_element_by_xpath("//*[@id='login']").click()
+    time.sleep(10)
+    try:
+        
+        if("不能签到" in browser.find_element_by_xpath("//*[@class='skin-blue']").text):
+            saveFile("Jikess2今日已签到！\n")
+        else:  
+            js = 'document.getElementById("checkin").click();'
+            browser.execute_script(js)
+            print("Jikess2签到成功")
+            saveFile("Jikess2签到成功！")
+        time.sleep(3)      
+    except NoSuchElementException as e:
+        print ("NoSuchElementException!")
+        saveFile("Jikess2签到代码存在异常"+str(e)) 
+
 # 写邮件
 def saveFile(message):
     # 保存email内容
@@ -133,5 +161,6 @@ if __name__ == '__main__':
     scut()
     n3ro()
     jikess()
+    jikess2()
     # 脚本运行成功,退出浏览器
     browser.quit()
