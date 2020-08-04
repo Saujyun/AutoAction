@@ -42,6 +42,8 @@ jobs:
             N3RO_PASSWORD: ${{ secrets.N3RO_PASSWORD }}
             JIKESS_USER: ${{ secrets.JIKESS_USER }}
             JIKESS_PASSWORD: ${{ secrets.JIKESS_PASSWORD }}
+            JIKESS_USER2: ${{ secrets.JIKESS_USER2 }}
+            JIKESS_PASSWORD2: ${{ secrets.JIKESS_PASSWORD2 }}
           run: python autoclick.py
         - name: 'Send mail'
           uses: dawidd6/action-send-mail@master
