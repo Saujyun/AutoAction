@@ -158,7 +158,7 @@ def saveFile(message):
         email.write(message+'\n')
         
 if __name__ == '__main__':
-    scut()
+    #scut()
     n3ro()
     jikess()
     jikess2()
