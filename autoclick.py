@@ -70,7 +70,7 @@ def situyun():
 
 # n3ro自动签到脚本        
 def n3ro():
-    browser.get('https://n3ro.club/auth/login')
+    browser.get('https://n3ro.wtf/auth/login')
     # 将窗口最大化
     browser.maximize_window()
     # 格式是PEP8自动转的
