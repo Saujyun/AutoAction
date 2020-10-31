@@ -159,8 +159,9 @@ def saveFile(message):
         
 if __name__ == '__main__':
     #scut()
-    n3ro()
+    
     #jikess()
     jikess2()
+    #n3ro()
     # 脚本运行成功,退出浏览器
     browser.quit()
