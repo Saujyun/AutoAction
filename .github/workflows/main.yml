@@ -5,7 +5,7 @@ on:
     types: started
   push:
   schedule:
-    - cron: '0 21 * * *'
+#    - cron: '0 21 * * *'
 
 jobs:
   bot:
@@ -38,8 +38,12 @@ jobs:
           env:
             SCUT_USER: ${{ secrets.SCUT_USER }}
             SCUT_PASSWORD: ${{ secrets.SCUT_PASSWORD }}
-            SITUYUN_USER: ${{ secrets.SITUYUN_USER }}
-            SITUYUN_PASSWORD: ${{ secrets.SITUYUN_PASSWORD }}
+            N3RO_USER: ${{ secrets.N3RO_USER }}
+            N3RO_PASSWORD: ${{ secrets.N3RO_PASSWORD }}
+            JIKESS_USER: ${{ secrets.JIKESS_USER }}
+            JIKESS_PASSWORD: ${{ secrets.JIKESS_PASSWORD }}
+            JIKESS_USER2: ${{ secrets.JIKESS_USER2 }}
+            JIKESS_PASSWORD2: ${{ secrets.JIKESS_PASSWORD2 }}
           run: python autoclick.py
         - name: 'Send mail'
           uses: dawidd6/action-send-mail@master
@@ -48,8 +52,8 @@ jobs:
             server_port: 465
             username: ${{ secrets.MAIL_USERNAME }}
             password: ${{ secrets.MAIL_PASSWORD }}
-            subject: 华工疫情健康申报系统操作结果 (${{env.REPORT_DATE}})
+            subject: 自动签到脚本 (${{env.REPORT_DATE}})
             body: file://email.txt
-            to: 2679225466@qq.com
-            from: GitHub Actions
+            to: 2280674798@qq.com
+            from: My Robot
             content_type: text/html
